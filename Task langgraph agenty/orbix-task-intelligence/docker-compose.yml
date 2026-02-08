@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15
+    container_name: orbix-postgres
+    environment:
+      POSTGRES_USER: orbix
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: orbix_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U orbix"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: orbix-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Orbix API
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: orbix-api
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DATABASE_URL=postgresql+asyncpg://orbix:${POSTGRES_PASSWORD:-password}@postgres:5432/orbix_db
+      - REDIS_URL=redis://redis:6379/0
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - API_WORKERS=2
+      - LOG_LEVEL=INFO
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./src:/app/src
+    command: uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --workers 2
+
+volumes:
+  postgres_data:
+  redis_data:

@@ -1,0 +1,385 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CORTEXA Design System - Executive-Grade Work Intelligence
+   Philosophy: Every pixel serves judgment, not theater.
+   Aesthetic: Brutally minimal, depth through subtlety.
+*/
+
+@layer base {
+  :root {
+    /* Light Mode - Pearl white, deep slate, sophisticated accents */
+    --background: 220 20% 97%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 222 47% 11%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 173 58% 39%;
+
+    --radius: 0.75rem;
+
+    /* CORTEXA Semantic Colors - Refined palette */
+    --teal: 173 58% 39%;
+    --teal-foreground: 0 0% 100%;
+    --cyan: 186 92% 38%;
+    --cyan-foreground: 0 0% 100%;
+    --violet: 258 90% 66%;
+    --violet-foreground: 0 0% 100%;
+    --amber: 32 95% 44%;
+    --amber-foreground: 0 0% 100%;
+    --success: 160 84% 39%;
+    --success-foreground: 0 0% 100%;
+    --warning: 32 95% 44%;
+    --warning-foreground: 0 0% 100%;
+    --error: 0 72% 51%;
+    --error-foreground: 0 0% 100%;
+
+    /* Pressure Levels - More contrast */
+    --pressure-critical: 0 72% 51%;
+    --pressure-high: 25 95% 53%;
+    --pressure-medium: 38 92% 50%;
+    --pressure-low: 160 84% 39%;
+    --pressure-minimal: 215 20% 65%;
+
+    /* Glass & Depth Effects */
+    --glass-background: 0 0% 100% / 0.8;
+    --glass-border: 214 32% 91% / 0.8;
+    --shadow-color: 222 47% 11%;
+    --shadow-elevation-low: 
+      0 1px 2px hsl(var(--shadow-color) / 0.02),
+      0 2px 4px hsl(var(--shadow-color) / 0.02);
+    --shadow-elevation-medium: 
+      0 2px 4px hsl(var(--shadow-color) / 0.03),
+      0 4px 8px hsl(var(--shadow-color) / 0.03),
+      0 8px 16px hsl(var(--shadow-color) / 0.03);
+    --shadow-elevation-high: 
+      0 4px 8px hsl(var(--shadow-color) / 0.04),
+      0 8px 16px hsl(var(--shadow-color) / 0.04),
+      0 16px 32px hsl(var(--shadow-color) / 0.04);
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 173 58% 39%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 173 58% 39%;
+  }
+
+  .dark {
+    /* Dark Mode - "Void with Light" - True charcoal black, OLED-ready */
+    --background: 0 0% 4%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 173 80% 42%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 0 0% 13%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 50%;
+
+    --accent: 0 0% 13%;
+    --accent-foreground: 0 0% 95%;
+
+    --destructive: 0 85% 50%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 173 80% 42%;
+
+    /* CORTEXA Semantic Colors - Vivid against void */
+    --teal: 173 80% 42%;
+    --teal-foreground: 0 0% 4%;
+    --cyan: 186 100% 50%;
+    --cyan-foreground: 0 0% 4%;
+    --violet: 260 100% 67%;
+    --violet-foreground: 0 0% 4%;
+    --amber: 38 100% 50%;
+    --amber-foreground: 0 0% 4%;
+    --success: 160 90% 45%;
+    --success-foreground: 0 0% 4%;
+    --warning: 38 100% 50%;
+    --warning-foreground: 0 0% 4%;
+    --error: 0 85% 50%;
+    --error-foreground: 0 0% 95%;
+
+    /* Pressure Levels - High luminosity for dark mode */
+    --pressure-critical: 0 85% 50%;
+    --pressure-high: 25 100% 55%;
+    --pressure-medium: 45 100% 50%;
+    --pressure-low: 160 90% 45%;
+    --pressure-minimal: 0 0% 40%;
+
+    /* Glass & Depth Effects - Void with subtle glow */
+    --glass-background: 0 0% 7% / 0.95;
+    --glass-border: 0 0% 20% / 0.5;
+    --shadow-color: 0 0% 0%;
+    --shadow-elevation-low: 
+      0 1px 3px hsl(0 0% 0% / 0.4),
+      0 0 1px hsl(173 80% 42% / 0.05);
+    --shadow-elevation-medium: 
+      0 4px 12px hsl(0 0% 0% / 0.5),
+      0 0 2px hsl(173 80% 42% / 0.08);
+    --shadow-elevation-high: 
+      0 8px 24px hsl(0 0% 0% / 0.6),
+      0 0 3px hsl(173 80% 42% / 0.1);
+
+    /* Sidebar - Pure void */
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 173 80% 42%;
+    --sidebar-primary-foreground: 0 0% 4%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 12%;
+    --sidebar-ring: 186 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Refined scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+    transition: background-color 0.2s;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/40;
+  }
+
+  /* Selection styling */
+  ::selection {
+    background: hsl(var(--teal) / 0.25);
+    color: inherit;
+  }
+}
+
+@layer components {
+  /* Glass morphism - refined */
+  .glass {
+    @apply backdrop-blur-xl;
+    background: hsl(var(--glass-background));
+    border: 1px solid hsl(var(--glass-border));
+  }
+
+  /* Elevated card style */
+  .card-elevated {
+    @apply bg-card rounded-2xl border border-border/50;
+    box-shadow: var(--shadow-elevation-low);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .card-elevated:hover {
+    box-shadow: var(--shadow-elevation-medium);
+    transform: translateY(-1px);
+  }
+
+  /* Premium button glow */
+  .btn-glow {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-glow::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--teal) / 0.4),
+      hsl(var(--cyan) / 0.4)
+    );
+    border-radius: inherit;
+    filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  .btn-glow:hover::before {
+    opacity: 1;
+  }
+
+  /* Pressure indicator animations */
+  .pressure-pulse {
+    animation: pressure-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pressure-pulse {
+    0%, 100% { 
+      opacity: 1; 
+      box-shadow: 0 0 0 0 hsl(var(--pressure-critical) / 0.4);
+    }
+    50% { 
+      opacity: 0.8;
+      box-shadow: 0 0 0 6px hsl(var(--pressure-critical) / 0);
+    }
+  }
+
+  /* Signal card - premium hover */
+  .signal-card {
+    @apply transition-all duration-300 ease-out;
+    box-shadow: var(--shadow-elevation-low);
+  }
+
+  .signal-card:hover {
+    box-shadow: var(--shadow-elevation-medium);
+    transform: translateY(-2px);
+  }
+
+  /* Stat card with subtle gradient border */
+  .stat-card {
+    @apply relative bg-card rounded-2xl p-6 overflow-hidden;
+    box-shadow: var(--shadow-elevation-low);
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--border)),
+      hsl(var(--border) / 0.5),
+      hsl(var(--border))
+    );
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Gradient text utility */
+  .text-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--teal)),
+      hsl(var(--cyan))
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Section divider */
+  .section-divider {
+    @apply h-px w-full;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--border)),
+      transparent
+    );
+  }
+
+  /* Metric value styling */
+  .metric-value {
+    @apply text-4xl font-semibold tracking-tight;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .metric-label {
+    @apply text-xs font-medium uppercase tracking-wider text-muted-foreground;
+  }
+}
+
+@layer utilities {
+  /* Pressure level utilities */
+  .text-pressure-critical { color: hsl(var(--pressure-critical)); }
+  .text-pressure-high { color: hsl(var(--pressure-high)); }
+  .text-pressure-medium { color: hsl(var(--pressure-medium)); }
+  .text-pressure-low { color: hsl(var(--pressure-low)); }
+  .text-pressure-minimal { color: hsl(var(--pressure-minimal)); }
+
+  .bg-pressure-critical { background-color: hsl(var(--pressure-critical)); }
+  .bg-pressure-high { background-color: hsl(var(--pressure-high)); }
+  .bg-pressure-medium { background-color: hsl(var(--pressure-medium)); }
+  .bg-pressure-low { background-color: hsl(var(--pressure-low)); }
+  .bg-pressure-minimal { background-color: hsl(var(--pressure-minimal)); }
+
+  /* Semantic colors */
+  .text-teal { color: hsl(var(--teal)); }
+  .text-cyan { color: hsl(var(--cyan)); }
+  .text-violet { color: hsl(var(--violet)); }
+  .text-success { color: hsl(var(--success)); }
+  .text-warning { color: hsl(var(--warning)); }
+  .text-error { color: hsl(var(--error)); }
+
+  .bg-teal { background-color: hsl(var(--teal)); }
+  .bg-cyan { background-color: hsl(var(--cyan)); }
+  .bg-violet { background-color: hsl(var(--violet)); }
+  .bg-success { background-color: hsl(var(--success)); }
+  .bg-warning { background-color: hsl(var(--warning)); }
+  .bg-error { background-color: hsl(var(--error)); }
+
+  /* Elevation shadows */
+  .shadow-low { box-shadow: var(--shadow-elevation-low); }
+  .shadow-medium { box-shadow: var(--shadow-elevation-medium); }
+  .shadow-high { box-shadow: var(--shadow-elevation-high); }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
+}
